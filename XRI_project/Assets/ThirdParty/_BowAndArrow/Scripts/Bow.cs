@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Oculus.Haptics;
+using UnityEngine.XR.OpenXR.Input;
 
 public class Bow : MonoBehaviour
 {
@@ -20,9 +22,17 @@ public class Bow : MonoBehaviour
 
     public float pullMultiplier = 1;
 
+    [Header("Haptics")]
+    public HapticClipPlayer hapticClipPlayer;
+
+    [Header("Audio")]
+    public AudioClip bowReleaseSound;
+    private AudioSource bowAudioSource;
+
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
+        bowAudioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -91,6 +101,7 @@ public class Bow : MonoBehaviour
         // If we've pulled far enough, fire
         if (m_PullValue > 0.25f)
             FireArrow();
+        PlayHapticFeedback();
 
         // Clear
         m_PullingHand = null;
@@ -108,5 +119,24 @@ public class Bow : MonoBehaviour
     {
         m_CurrentArrow.Fire(m_PullValue * pullMultiplier);
         m_CurrentArrow = null;
+    }
+
+    private void PlayHapticFeedback()
+    {
+        if(m_PullingHand != null)
+        {
+            HapticSource hapticSource = m_PullingHand.GetComponent<HapticSource>();
+            
+            if (hapticSource != null)
+            {
+                hapticSource.Play();
+            }
+        if(bowAudioSource != null && bowReleaseSound != null)
+            {
+                bowAudioSource.PlayOneShot(bowReleaseSound);
+            }
+
+        }
+
     }
 }
