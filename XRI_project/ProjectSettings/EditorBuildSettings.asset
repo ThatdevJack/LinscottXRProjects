@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ArcheryPassthrough.unity
     guid: 8ac9ab380794dc9409316299b7c5c0fb
+  - enabled: 1
+    path: Assets/Scenes/hands.unity
+    guid: 8ca92c8963106a84bb5eda3879ade0a6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cd5860e817eb88e4690940cbf7abb602, type: 2}
