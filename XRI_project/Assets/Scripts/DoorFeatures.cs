@@ -40,7 +40,7 @@ public class DoorFeatures : CoreFeatures
         //s = Shorthand, SelectEnterEvents
         socketInteractor?.selectEntered.AddListener((s) =>
         {
-            //OpenDoor();
+            OpenDoor();
             PlayOnStart();
         });
         socketInteractor?.selectExited.AddListener((s) =>
@@ -51,8 +51,10 @@ public class DoorFeatures : CoreFeatures
 
         simpleInteractable?.selectEntered.AddListener((s) =>
         {
-            //OpenDoor();
+            OpenDoor();
         });
+
+        //OpenDoor();
 
     }
 
